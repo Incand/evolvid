@@ -6,7 +6,7 @@ import time
 def main():
     pygame.init()
 
-    size = width, height = 320,240
+    size = width, height = 800, 600
 
     screen = pygame.display.set_mode(size)
 
@@ -21,9 +21,9 @@ def main():
 
         def update(self):
             global size
-            if (self.rect.x < 0) or (self.rect.x > 320-16):
+            if (self.rect.x < 0) or (self.rect.x > 800-16):
                 self.speed[0] *= -1
-            if (self.rect.y < 0) or (self.rect.y > 240-16):
+            if (self.rect.y < 0) or (self.rect.y > 600-16):
                 self.speed[1] *= -1
 
             self.rect.x = self.rect.x + self.speed[0]
@@ -33,6 +33,7 @@ def main():
             screen.blit(self.image, self.rect)
 
     square1 = square()
+    square2 = square(image="gfx/pink.png", speed=[1, 1])
 
     while 1:
         for event in pygame.event.get():
@@ -42,8 +43,10 @@ def main():
         screen.fill((0, 0, 0))
         square1.draw(screen)
         square1.update()
+        square2.draw(screen)
+        square2.update()
         pygame.display.flip()
-        time.sleep(0.01)
+        #time.sleep(0.001)
 
 
 if __name__ == '__main__':
